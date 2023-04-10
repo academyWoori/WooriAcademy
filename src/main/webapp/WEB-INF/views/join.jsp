@@ -93,8 +93,10 @@ $(function(){
 						alert("중복된 아이디입니다.")
 						idcheck1.type = "hidden";
 					} else if(result == 0){
-						$(".idcheckNum").attr("value","3");
+						
 						idcheck1.type = "text";
+						$(".input[name=idcheckNum]").attr("value",'3');
+						
 						alert("사용 가능한 아이디 입니다.");
 					}
 				}
@@ -223,6 +225,7 @@ function validate(){
       idcheck1.type="text";
       document.getElementById("m_id").focus();
       return false;
+      
    }
    if(ename != 3){
       alert("닉네임 오류");
@@ -301,7 +304,7 @@ function validate(){
             <div class="box-group"> 
                <label>아이디　　　　</label>
                <input type='text' id='m_id' name='m_id' onclick="id_click();" minlength="8" maxlength="15" style="width:130px;border:none;" >
-               <input type='hidden' id='idcheckNum' name='idcheckNum' value='1'>
+               <input type='text' id='idcheckNum' name='idcheckNum' value='1'>
                <button type="button" class="btn btn-idcheck" style="background-color:#99c2ff;color:White;height:28px;font-size:0.9em;padding-top:3.5px;">중복확인</button>
                <input type='hidden' id='idcheck1' name='idcheck1' class="form-control" value="중복확인이 완료되었습니다." style="color:green; width:200px;height:28px;border:none;font-size:0.8em;text-align:center">    
             </div>
