@@ -15,24 +15,60 @@ public class BoardDAOImpl implements BoardDAO {
    
    
    // 회원 *********************************************************************************************************************
+  
    // 로그인
    @Override
    public Map login(Map<String, Object> map) {
       return sqlsession.selectOne(namespace + ".login", map);
    }
+   	// 세션
+	@Override
+	public jointempDTO sessionId(jointempDTO dto) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlsession.selectOne(namespace+".sessionId",dto);
+	}
+   
    
    // 회원 가입
    @Override
    public int jointemp(jointempDTO jointempDTO) throws Exception {
       return sqlsession.insert(namespace+".jointemp", jointempDTO);
    }
+   // 아이디 중복확인
+	@Override
+	public int checkId(jointempDTO dto) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlsession.selectOne(namespace+".checkId", dto);
+	}
+	// 닉네임 중복확인
+	@Override
+	public int checkEname(jointempDTO dto) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlsession.selectOne(namespace+".checkEname", dto);
+	}
+	
+   
    
    // ID 찾기
 	@Override
-	public Map findId(Map<String, Object> map) throws Exception {
+	public String findId(jointempDTO jointempDTO) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlsession.selectOne(namespace+".findId", map);
+		return sqlsession.selectOne(namespace+".findId", jointempDTO);
+	}	
+	// Password 찾기
+	@Override
+	public String findPw(jointempDTO jointempDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlsession.selectOne(namespace+".findPw", jointempDTO);
 	}
+	// Password 바꾸기
+	@Override
+	public int changPw(jointempDTO jointempDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlsession.update(namespace+".changPw", jointempDTO);
+	}
+
+
    
    // 회원 관리
    @Override
@@ -51,27 +87,39 @@ public class BoardDAOImpl implements BoardDAO {
    // 회원 상세정보
 	@Override
 	public jointempDTO manageOne(String m_id) throws Exception {
-		// TODO Auto-generated method stub
 		 return sqlsession.selectOne(namespace+".manageOne",m_id);
 	}
-	// 회원정보 수정
+	// 관리자 - 회원정보 수정
 	@Override
 	public int userupdate(jointempDTO jointempDTO) throws Exception {
-		// TODO Auto-generated method stub
 		return sqlsession.update(namespace+".userupdate",jointempDTO);
 	}
-	// 회원정보 삭제
+	// 관리자 - 회원정보 삭제
 	@Override
-	public int userdelete(int m_id) throws Exception {
-		// TODO Auto-generated method stub
+	public int userdelete(String m_id) throws Exception {
 		return sqlsession.update(namespace+".userdelete",m_id);
 	}
-
+	
+	//개인 - 회원정보 변경
+	@Override
+	public jointempDTO personal(String m_id) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlsession.selectOne(namespace+".personal",m_id);
+	}
+	
+	// 개인 - 회원정보 수정
+	@Override
+	public int perupdate(jointempDTO jointempDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlsession.update(namespace+".perupdate",jointempDTO);
+	}
+	
    
    
    
    // 게시판 *********************************************************************************************************************
-   //공지
+   
+	//공지
    @Override
    public int getlistcnt() throws Exception {
       return sqlsession.selectOne(namespace+".getlistcnt");
@@ -145,6 +193,7 @@ public class BoardDAOImpl implements BoardDAO {
    	return sqlsession.selectList(namespace + ".question", paging);
    }
    
+   
    // 내 게시물
 	@Override
 	public List<BoardDTO> list_my(BoardDTO boardDTO) throws Exception {
@@ -192,6 +241,8 @@ public class BoardDAOImpl implements BoardDAO {
    public int updateReadCnt(int BD_NUM) throws Exception {
       return sqlsession.update(namespace+".updateReadCnt", BD_NUM);
    }
+
+   
    
    
    
@@ -277,10 +328,6 @@ public class BoardDAOImpl implements BoardDAO {
 		return sqlsession.update(namespace + ".ptUpdate", jointempDTO);
 	}
 
-	@Override
-	public int mm_number(jointempDTO jointempDTO) throws Exception {
-		return sqlsession.update(namespace + ". mm_number", jointempDTO);
-	}
 
 
 

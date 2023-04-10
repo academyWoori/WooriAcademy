@@ -72,7 +72,71 @@ function email_select() {
 
 
 $(function(){
+	
+	// 아이디 중복확인 버튼
+	$(".btn-idcheck").click(function(){
+		var m_id = document.getElementById("m_id").value;
+		var paramData = {
+				"m_id" : m_id
+		}
+		
+		if(m_id.length < 7){
+			alert("아이디는 8자리 이상으로 만들어주세요.");	
+		} else {
+			$.ajax({
+				url : "${pageContext.request.contextPath}/board/checkId",
+				type : "post",
+				dataType : "json",
+				data : paramData,
+				success : function(result){
+					if(result == 1){
+						alert("중복된 아이디입니다.")
+						idcheck1.type = "hidden";
+					} else if(result == 0){
+						$(".idcheckNum").attr("value","3");
+						idcheck1.type = "text";
+						alert("사용 가능한 아이디 입니다.");
+					}
+				}
+			})
+	
+		}
+		
+	});
    
+	// 닉네임 중복확인 버튼
+	$(".btn-enamecheck").click(function(){
+		var ename = document.getElementById("m_ename").value;
+		var paramData = {
+				"m_ename" : ename
+		}
+		
+		if(ename.length < 2 || ename.length > 12 ){
+			alert("닉네임은 3자리 이상으로 만들어주세요.")
+		} else {
+			$.ajax({
+				url : "${pageContext.request.contextPath}/board/checkEname",
+				type : "post",
+				dataType : "json",
+				data : paramData,
+				success : function(result){
+					if(result == 1){
+						enamecheck1.type = "hidden";
+						alert("중복된 닉네임입니다.")
+					} else if(result == 0){
+						$('input[name=enamecheckNum]').attr('value','3');
+						enamecheck1.type = "text";
+						alert("사용 가능한 닉네임입니다");
+					}
+				}
+				
+				
+			});
+			
+		}
+	});
+	
+	
    $(".btn-primary").click(function(){   
       var tel1 = document.getElementById("tel1").value;
       var tel2 = document.getElementById("tel2").value;
@@ -83,28 +147,8 @@ $(function(){
       $('input[name=m_email]').attr('value',email1+"@"+email2);   
    });
    
-   // 2-1,2 아이디 중복 확인버튼
-   $(".btn-idcheck").click(function(){
-      idcheck1.type="hidden";
-      idcheck2.type="hidden";
-      idcheck3.type="hidden";   
-      var id = document.getElementById("m_id").value;
-      var exptext = /[a-zA-Z0-9/]/;   
-      if(id.length > 7 && id.length < 16){
-         if(exptext.test(id)==false){
-            $('input[name=idcheckNum]').attr('value','2');
-            idcheck3.type="text";
-            document.getElementById("m_id").focus();   
-         } else {
-            $('input[name=idcheckNum]').attr('value','3');
-            idcheck2.type="text";
-         }
-      } else{
-         $('input[name=idcheckNum]').attr('value','2');
-         idcheck3.type="text";
-      }
-   });
    
+   /*
    // 2-1, 닉네임 중복 확인버튼
    $(".btn-enamecheck").click(function(){
       enamecheck1.type="hidden";
@@ -119,7 +163,9 @@ $(function(){
          enamecheck3.type="text";
       }
    });
-      
+     */
+     
+     
    // 비밀번호 키업
    $('#m_pw').keyup(function(){
       $('font[name=passcheck]').text('');
@@ -257,9 +303,7 @@ function validate(){
                <input type='text' id='m_id' name='m_id' onclick="id_click();" minlength="8" maxlength="15" style="width:130px;border:none;" >
                <input type='hidden' id='idcheckNum' name='idcheckNum' value='1'>
                <button type="button" class="btn btn-idcheck" style="background-color:#99c2ff;color:White;height:28px;font-size:0.9em;padding-top:3.5px;">중복확인</button>
-               <input type='hidden' id='idcheck1' name='idcheck1' class="form-control" value="중복확인을 하십시오." style="color:red; width:200px;height:28px;border:none;font-size:0.8em;text-align:center">
-               <input type='hidden' id='idcheck2' name='idcheck2' class="form-control" value="중복확인이 완료되었습니다." style="color:green; width:200px;height:28px;border:none;font-size:0.8em;text-align:center">
-               <input type='hidden' id='idcheck3' name='idcheck3' class="form-control" value="잘못된 아이디 형식입니다." style="color:red; width:200px;height:28px;border:none;font-size:0.8em;text-align:center">      
+               <input type='hidden' id='idcheck1' name='idcheck1' class="form-control" value="중복확인이 완료되었습니다." style="color:green; width:200px;height:28px;border:none;font-size:0.8em;text-align:center">    
             </div>
          
             <!-- 비밀번호 --><br>
@@ -279,9 +323,7 @@ function validate(){
                <input type='text' id='m_ename' name='m_ename' onclick="ename_click();" maxlength="15" style="width:130px;border:none;" >
                <input type='hidden' id='enamecheckNum' name='enamecheckNum' value='1'>
                <button type="button" class="btn btn-enamecheck" style="background-color:#99c2ff;color:White;height:28px;font-size:0.9em;padding-top:3.5px;">중복확인</button>
-               <input type='hidden' id='enamecheck1' name='enamecheck1' class="form-control" value="중복확인을 하십시오." style="color:red; width:200px;height:28px;border:none;font-size:0.8em;text-align:center">
-               <input type='hidden' id='enamecheck2' name='enamecheck2' class="form-control" value="중복확인이 완료되었습니다." style="color:green; width:200px;height:28px;border:none;font-size:0.8em;text-align:center" >
-               <input type='hidden' id='enamecheck3' name='enamecheck3' class="form-control" value="잘못된 아이디 형식입니다." style="color:red; width:200px;height:28px;border:none;font-size:0.8em;text-align:center">      
+               <input type='hidden' id='enamecheck1' name='enamecheck1' class="form-control" value="중복확인이 완료되었습니다." style="color:green; width:200px;height:28px;border:none;font-size:0.8em;text-align:center" >                     
             </div>
                         
             <!-- 이름 --><br>

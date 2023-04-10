@@ -10,12 +10,28 @@ public interface BoardService {
 
 
 	// [회원] ************************************************************* 
+
+   //로그인
+   public Map login(Map<String, Object> map);
+   // 세션 Id
+   public jointempDTO sessionId(jointempDTO dto) throws Exception;
+
+   
    //회원가입
    public int jointemp(jointempDTO jointempDTO) throws Exception;
-   public Map login(Map<String, Object> map);
+   // 아이디 중복확인
+   public int checkId(jointempDTO dto) throws Exception;
+   // 닉네임 중복확인
+   public int checkEname(jointempDTO dto) throws Exception;
+   
    
    // ID 찾기
-   public Map findId(Map<String, Object> map) throws Exception;
+   public String findId(jointempDTO dto) throws Exception;   
+   // Password 찾기
+   public String findPw(jointempDTO jointempDTO) throws Exception;
+   // Password 바꾸기
+   public int changPw(jointempDTO jointempDTO) throws Exception;
+   
    
    //회원관리 처리를 위한 메소드
    public List<jointempDTO> manage() throws Exception;
@@ -25,12 +41,15 @@ public interface BoardService {
    public List<jointempDTO> manage(paging paging) throws Exception;
    //회원정보 상세조회
    public jointempDTO manageOne(String m_id) throws Exception;
-   //회원정보 수정
+   // 관리자 - 회원정보 수정
    public int userupdate(jointempDTO jointempDTO) throws Exception;
-   //회원정보 삭제
-   public int userdelete(int m_id) throws Exception;
+   // 관리자 - 회원정보 삭제
+   public int userdelete(String m_id) throws Exception;
    
-   
+   // 개인 - 회원정보 변경
+   public jointempDTO personal(String m_id) throws Exception;
+   // 개인 - 회원정보 수정
+   public int perupdate(jointempDTO jointempDTO) throws Exception;
    
    // [게시판] ************************************************************
    
@@ -97,7 +116,7 @@ public interface BoardService {
    //선택목록(글읽기)을 위한 메소드
    public BoardDTO detail(int BD_NUM) throws Exception;
    
-   //조회수 증가를 위한 메소드
+   // 조회수 증가를 위한 메소드
    public int updateReadCnt(int BD_NUM) throws Exception;
    
    //글쓰기를 위한 메소드
@@ -136,7 +155,6 @@ public interface BoardService {
    // 마이페이지 ****************************************************************
    public int ptUpdate(jointempDTO jointempDTO) throws Exception;
    public jointempDTO mySelect(jointempDTO jointempDTO) throws Exception;
-   public int mm_number(jointempDTO jointempDTO) throws Exception;
-   
+  
    
 }

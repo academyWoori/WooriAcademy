@@ -130,7 +130,7 @@ desired effect
 		<div class="box-footer">
 			<center>
 				<button type="submit" class="btn btn-primary">수정</button>
-				<button type="button" class="btn btn-primary" onclick="location.href='${contextPath}/board/detail?BD_NUM=${board.BD_NUM}'">취소</button>
+				<button type="button" class="btn btn-primary" onclick="location.href='${contextPath}/board/detail?bd_num=${board.bd_num}'">취소</button>
 			</center>
 		</div>
 	</form>

@@ -3,7 +3,7 @@
     <footer class="main-footer">
        
 <!-- Footer Start -->
-    <div class="container-fluid bg-dark text-light mt-5 wow fadeInUp">
+    <div class="container-fluid bg-dark text-light mt-5 ">
         <div class="container">
             <div class="row gx-5">
                 <div class="col-lg-4 col-md-6 footer-about">

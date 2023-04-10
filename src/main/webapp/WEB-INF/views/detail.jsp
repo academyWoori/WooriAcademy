@@ -55,18 +55,6 @@
 
 
 $(function(){
-   $('.btn-list').click(function(){
-            
-      
-      
-   });
-   
-   $('.btn-up').click(function(){
-            
-      
-      
-   });
-   
    
 })
 
@@ -82,11 +70,13 @@ $(function(){
       $(document).on('click','#btnReplySave',function(){
          var comm_con = $("#comm_con").val();
          var m_id = $("#m_id").val();
+         var m_ename = document.getElementById("m_ename").value;
          
          var url = "${pageContext.request.contextPath}/board/reply2";   //ajax 사용
          var paramData = {
                "comm_con"    : comm_con,
-               "m_id"   : m_id,
+               "m_ename"   : m_ename,
+               "m_id" : m_id,
                "bd_num" : '${board.bd_num}'
             }
          
@@ -98,6 +88,7 @@ $(function(){
             success:function(result){
                replylist();
                $("#comm_con").val('');
+               $("#m_ename").val('');
                $("#m_id").val('');
             },
             error:function(result){
@@ -132,9 +123,9 @@ $(function(){
                         //<div id="reno12"> <div id="reno13">
                    htmls += '<span class="d-block">';
                    htmls += this.comm_num + ' - ';
-                   htmls += '<strong class="text-gray-dark">' + this.m_id + '</strong>';
+                   htmls += '<strong class="text-gray-dark">' + this.m_ename + '</strong>';
                    htmls += '<span style="padding-left: 7px; font-size: 9pt">';
-                   htmls += '<a href="javascript:void(0)" onclick="fn_editReply(' + this.comm_num + ', \'' + this.m_id + '\', \'' + this.comm_con + '\' )" style="padding-right:5px">수정</a>';
+                   htmls += '<a href="javascript:void(0)" onclick="fn_editReply(' + this.comm_num + ', \'' + this.m_ename + '\', \'' + this.comm_con + '\' )" style="padding-right:5px">수정</a>';
                    htmls += '<a href="javascript:void(0)" onclick="fn_deleteReply(' + this.comm_num + ')" >삭제</a>';
                    htmls += '</span>';
                    htmls += '</span><br>';
@@ -154,15 +145,15 @@ $(function(){
    }
 
    //댓글 수정하기(form)
-   function fn_editReply(comm_num, m_id, comm_con) {
+   function fn_editReply(comm_num, m_ename, comm_con) {
       
       var htmls = "";
       htmls = htmls + '<div class="" id="comm_num' + comm_num + '">';   
       htmls += '<span class="d-block">';
       htmls += comm_num + ' - ';
-      htmls += '<strong class="text-gray-dark">' + m_id + '</strong>';
+      htmls += '<strong class="text-gray-dark">' + m_ename + '</strong>';
       htmls += '<span style="padding-left: 7px; font-size: 9pt">';
-      htmls += '<a href="javascript:void(0)" onclick="fn_updateReply(' + comm_num + ', \'' + m_id + '\')" style="padding-right:5px">저장</a>';
+      htmls += '<a href="javascript:void(0)" onclick="fn_updateReply(' + comm_num + ', \'' + m_ename + '\')" style="padding-right:5px">저장</a>';
       htmls += '<a href="javascript:void(0)" onclick="replylist()" >취소</a>';
       htmls += '</span>';
       htmls += '</span><br>';
@@ -179,11 +170,14 @@ $(function(){
    //댓글 수정하기(처리)
    function fn_updateReply(comm_num,m_ename){
       var editmemo = $('#editmemo').val();
+      var m_id = $("#m_id").val();
+      var m_ename = document.getElementById("m_ename").value;
       const url = "${pageContext.request.contextPath}/board/replyupdate2";
       var paramData = {
             "comm_num" : comm_num,
+            "m_ename" : m_ename,
             "m_id" : m_id,
-            "comm_con" : editmemo
+            "comm_con" : editmemo        
       };
       
       $.ajax({
@@ -260,8 +254,9 @@ desired effect
 <!-- title end-->
    <div id="detail_wrap0" class="box" ></div>
    <div id="detail_wrap1" class="box" >
-         <div id="detail_box2" class="box-body">
+         <div id="detail_box2" class="box-body">  
             <div class="form-group" style="text-align:right">
+           	   <label><h6>글 번호 : ${board.bd_num}　　　</h6></label>
                <label><h6>작성자 : ${board.m_ename}　　</h6></label>
                <label><h6>추천 : ${board.bd_recomm}　　</h6></label>
                <label><h6>조회수 : ${board.bd_ref}　　</h6></label>
@@ -272,8 +267,10 @@ desired effect
           </div>   
        </div>  
            <div class="box-footer">
+              
               <button class="btn btn-list">목록</button>
-              <button class="btn btn-up">추천하기</button>      
+              <button class="btn btn-up" id="rec_update">추천하기</button>
+ 
               <div style="float:right">
                <button class="btn btn-warning">수정</button>
                <button class="btn btn-danger">삭제</button>
@@ -290,8 +287,10 @@ desired effect
                   </tr>
                   <tr>
                      <td><button type="button" id="btnReplySave" style="width:90px; height:60px;">등록</button></td>
-                     <td><input type="text" name="m_id" id="m_id" value="${user.m_id}"></td>
-                     <td><input type="text" name="m_ename" id="m_ename" value="${user.m_ename}"></td>
+                     <td><input type="hidden" name="m_id" id="m_id" value="${user.m_id}"></td>
+                     <td><input type="hidden" name="m_ename" id="m_ename" value="${user.m_ename}"></td>
+                     <td><input type="hidden" name="bd_group" id="bd_group" value="${board.bd_group}"></td>
+                     <td><input type="hidden" name="bd_recomm" id="bd_recomm" value="${board.bd_recomm}"></td>
                   </tr>
                </table>  
             </div>
@@ -303,11 +302,16 @@ desired effect
        
 
 <script>
+
+
+
    $(function(){
-      //목록 버튼을 눌렀을 때 처리
-      $(".btn-primary").click(function(){
-         location.href="list?bd_num=" + ${board.bd_num};
+      
+	  //목록 버튼을 눌렀을 때 처리
+	  $(".btn-list").click(function(){
+		  location.href="pageList?bd_group=" + ${board.bd_group};
       });
+
       //삭제 버튼을 눌렀을 때 처리
       $(".btn-danger").click(function(){
          location.href="delete?bd_num=" + ${board.bd_num};

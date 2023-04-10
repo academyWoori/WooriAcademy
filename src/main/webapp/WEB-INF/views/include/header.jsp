@@ -82,8 +82,15 @@
            </c:if>
            
          <c:if test="${user!=null }">
-            <label><h5>${user.m_ename}님 환영합니다 |</h5>   </label>
+            <label><h6 style="color:#2EFEF7;">${user.m_ename}님, 환영합니다.</h6></label>
+            <c:if test="${user.m_ste ==9}">
+            <label><h5 style="color:#6E6E6E;"> | </h5></label>              
+               <a href="${contextPath}/board/mngpage" style="font-size:0.7em;">관리자 마이페이지</a>          
+            </c:if>          
+            <c:if test="${user.m_ste !=9}"> 
+            <label><h5 style="color:#6E6E6E;"> | </h5></label>            
             <a href="${contextPath}/board/mypage" style="font-size:0.7em;">마이페이지</a>
+            </c:if>           
          </c:if>
 
       </div>
@@ -95,12 +102,7 @@
          <c:if test="${user==null }">
            </c:if>
            
-         <c:if test="${user!=null }">
-            <c:if test="${user.m_ste ==9}">
-               <a href="${contextPath}/board/Management" style="font-size:1.0em;">회원관리</a>
-               <a > | </a>
-            </c:if>
-            
+         <c:if test="${user!=null }">           
             <a href="${contextPath}/board/logOut" style="font-size:1.0em;">로그아웃</a>   
          </c:if>
 

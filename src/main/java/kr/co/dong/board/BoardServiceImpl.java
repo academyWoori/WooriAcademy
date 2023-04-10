@@ -21,23 +21,58 @@ public class BoardServiceImpl implements BoardService{
    @Override
    public Map login(Map<String, Object> map) {
       return dao.login(map);
-   }
-   
-   //회원가입
+   } 
+   	// 세션
+	@Override
+	public jointempDTO sessionId(jointempDTO dto) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.sessionId(dto);
+	}
+
+
+
+   // 회원가입
    @Override
    public int jointemp(jointempDTO jointempDTO) throws Exception {
       return dao.jointemp(jointempDTO);
    }
-    
-   // ID 찾기
+   // 아이디 중복 확인
 	@Override
-	public Map findId(Map<String, Object> map) throws Exception {
-		// TODO Auto-generated method stub
-		return dao.findId(map);
+	public int checkId(jointempDTO dto) throws Exception {
+		int result = dao.checkId(dto);
+		return result;
 	}
+	// 닉네임 중복 확인
+	@Override
+	public int checkEname(jointempDTO dto) throws Exception {
+		int result = dao.checkEname(dto);
+		return result;
+	}
+
+
    
-   
-   
+	
+    
+	// ID 찾기
+	@Override
+	public String findId(jointempDTO jointempDTO) throws Exception {
+		return dao.findId(jointempDTO);
+	}
+	// Password 찾기
+	@Override
+	public String findPw(jointempDTO jointempDTO) throws Exception {
+		return dao.findPw(jointempDTO);
+	}
+	// Password 바꾸기
+	@Override
+	public int changPw(jointempDTO jointempDTO) throws Exception {
+		return dao.changPw(jointempDTO);
+	}
+
+	
+	
+	
+	
    // 회원 관리
    @Override
    public int getmembercnt() throws Exception {
@@ -56,22 +91,33 @@ public class BoardServiceImpl implements BoardService{
    //회원정보 상세조회
    @Override
    public jointempDTO manageOne(String m_id) throws Exception {
-	// TODO Auto-generated method stub
 	   return dao.manageOne(m_id);
    }
-   //회원정보 수정
+   // 관리자 - 회원정보 수정
    @Override
    public int userupdate(jointempDTO jointempDTO) throws Exception{
-	// TODO Auto-generated method stub
 	   return dao.userupdate(jointempDTO);
    }
-   //회원정보 삭제
+   // 관리자 - 회원정보 삭제
    @Override
-   public int userdelete(int m_id) throws Exception{
-	// TODO Auto-generated method stub
+   public int userdelete(String m_id) throws Exception{
    	return dao.userdelete(m_id);
-}
+   }
 
+   
+   	// 개인 - 회원 정보 조회
+	@Override
+	public jointempDTO personal(String m_id) throws Exception {
+		return dao.personal(m_id);
+	}
+	//개인 - 회원 정보 변경 
+	@Override
+	public int perupdate(jointempDTO jointempDTO) throws Exception {
+		return dao.perupdate(jointempDTO);
+	}
+
+   
+   
    
    
    // 레지스터  *********************************************************************************************************************
@@ -102,10 +148,11 @@ public class BoardServiceImpl implements BoardService{
    // 디테일 조회수 증가
 	@Override
 	public int updateReadCnt(int BD_NUM) throws Exception {
-		// TODO Auto-generated method stub
 		return 0;
 	}
+	
 
+	
    
    
    // 댓글 *********************************************************************************************************************
@@ -225,19 +272,15 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	
-	// 나의
+	// 나의 게시글
 	@Override
 	public List<BoardDTO> list_my(BoardDTO boardDTO) throws Exception {
 		return dao.list_my(boardDTO);
 	}
-	
-	
 	@Override
 	public int getmycnt(String m_id) throws Exception {
 		return dao.getmycnt(m_id);
 	}
-	
-	
 	@Override
 	public List<BoardDTO> list_my(paging paging) throws Exception {
 		return dao.list_my(paging);
@@ -276,13 +319,6 @@ public class BoardServiceImpl implements BoardService{
 	public jointempDTO mySelect(jointempDTO jointempDTO) throws Exception {
 		return dao.mySelect(jointempDTO);
 	}
-
-	@Override
-	public int mm_number(jointempDTO jointempDTO) throws Exception {
-		// TODO Auto-generated method stub
-		return dao.mm_number(jointempDTO);
-	}
-
 
 
 

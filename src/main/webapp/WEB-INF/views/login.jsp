@@ -166,6 +166,7 @@ background: #fff;
    <form action="login" method="post">
    <input type="hidden" value="login">
    <table border="1">
+   <div>${msg}</div>
    <center>
    </center>
 
@@ -179,6 +180,7 @@ background: #fff;
          <label for="userPassword">* Password </label>
       </div>
       <input type="submit" value="Login" class="login-btn" />
+      <br>
       <div id="forget">
          <a href="${contextPath}/board/join" style="margin-left:27px;">회원가입 |</a>
          <a href="${contextPath}/board/findId">아이디 찾기 |</a>

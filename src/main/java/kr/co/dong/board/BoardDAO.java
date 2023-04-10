@@ -5,35 +5,55 @@ import java.util.Map;
 
 public interface BoardDAO {
    
-   
+  
    // [회원] ************************************************************* 
+	
+
+   // 로그인
+   public Map login(Map<String, Object> map);
+   // 세션 새로고침
+   public jointempDTO sessionId(jointempDTO dto) throws Exception;
+   
    //회원가입
    public int jointemp(jointempDTO jointempDTO) throws Exception;
-   public Map login(Map<String, Object> map);
+   // 아이디 중복확인
+   public int checkId(jointempDTO dto) throws Exception;
+   // 닉네임 중복확인
+   public int checkEname(jointempDTO dto) throws Exception;
    
    
-   //ID 찾기
-   public Map findId(Map<String, Object> map) throws Exception;
+   // ID 찾기
+   public String findId(jointempDTO dto) throws Exception;
+   // Password 찾기
+   public String findPw(jointempDTO jointempDTO) throws Exception;
+   // Password 바꾸기
+   public int changPw(jointempDTO jointempDTO) throws Exception;   
    
    
-   //회원관리 처리를 위한 메소드
-   public List<jointempDTO> manage() throws Exception;
    //회원관리 페이지처리
    public int getmembercnt() throws Exception;
+   //회원관리 처리를 위한 메소드
+   public List<jointempDTO> manage() throws Exception;
    //회원관리 페이징
    public List<jointempDTO> manage(paging paging) throws Exception;
+   
+   
    //회원정보 상세조회
    public jointempDTO manageOne(String m_id) throws Exception;
-   //회원정보 수정
+   // 관리자 - 회원 정보 수정 
    public int userupdate(jointempDTO jointempDTO) throws Exception;
-   //회원정보 삭제
-   public int userdelete(int m_id) throws Exception;
+   // 관리자 - 회원정보 삭제
+   public int userdelete(String m_id) throws Exception;
+   
+   
+   // 개인 - 회원 정보 수정
+   public jointempDTO personal(String m_id) throws Exception;
+   // 개인 - 회원 정보 수정
+   public int perupdate(jointempDTO jointempDTO) throws Exception;
    
    
    
-   
-   
-   // [게시판] ************************************************************
+   // [게시판] *****************************************************************************
    
    //공지 게시물 처리를 위한 메소드
    public List<BoardDTO> list() throws Exception;
@@ -94,7 +114,8 @@ public interface BoardDAO {
    
 
    
-   // [레지스터]  ***************************************************************
+   // [레지스터]  *******************************************************************************
+   
    //선택목록(글읽기)을 위한 메소드
    public BoardDTO detail(int BD_NUM) throws Exception;
    
@@ -112,7 +133,7 @@ public interface BoardDAO {
    
    
    
-   // 댓글 *********************************************************************
+   // [댓글] ***********************************************************************************
    //댓글 전체 목록
    public List<BoardReply> getDetail(int BD_NUM) throws Exception;
    
@@ -138,6 +159,5 @@ public interface BoardDAO {
    
    public int ptUpdate(jointempDTO jointempDTO) throws Exception;
    public jointempDTO mySelect(jointempDTO jointempDTO) throws Exception;
-   public int mm_number(jointempDTO jointempDTO) throws Exception;
    
 }
