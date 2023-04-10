@@ -12,14 +12,19 @@
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	<bean id="dataSourceSpied" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></property>
-		<property name="url" value="jdbc:mysql://localhost:3306/susu?"></property>
-		<property name="username" value="root"></property>
-		<property name="password" value="1234"></property>
-	</bean>	
+      <property name="url" value="jdbc:mysql://192.168.0.91/susu?"></property>
+      <!--
+      <property name="username" value="root"></property>
+      <property name="password" value="1234"></property>
+      -->
+      <property name="username" value="gyuthing"></property>
+      <property name="password" value="1234"></property>
+   </bean>   
+
 	
 	<!-- db Log추가 -->
     <bean id="dataSource" class="net.sf.log4jdbc.Log4jdbcProxyDataSource"> 
-        <constructor-arg ref="dataSourceSpied" /> 
+        <constructor-arg ref="dataSourceSpied" />
         <property name="logFormatter"> 
             <bean class="net.sf.log4jdbc.tools.Log4JdbcCustomFormatter"> 
                 <property name="loggingType" value="MULTI_LINE" /> 
