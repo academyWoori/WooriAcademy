@@ -7,9 +7,9 @@
 
    
    
-   <!--  로그인 처리를 위한 SQL -->
+ <!--  로그인 처리를 위한 SQL -->
    <select id="login" parameterType="java.util.Map" resultType="java.util.Map">
-      SELECT m_id, m_ename, m_name, m_pt, m_ste
+      SELECT m_id, m_ename, m_name, m_pt, m_ste, m_pw, m_email, m_tel
         FROM tb_membership
        WHERE m_id = #{m_id}
          AND m_pw = #{m_pw};
