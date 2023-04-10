@@ -105,7 +105,7 @@ desired effect
 	</div>
     <div class="container-fluid py-5" >
             <div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width:500px;text-align:left;" >
-                <h1 class="mb-0">나 의 문 의</h1>
+                <h1 class="mb-0">대 기 문 의</h1>
             </div>
    </div>
 <!-- title end-->

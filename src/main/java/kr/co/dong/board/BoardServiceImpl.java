@@ -270,7 +270,19 @@ public class BoardServiceImpl implements BoardService{
 	public List<BoardDTO> question(paging paging) throws Exception {
 		return dao.question(paging);
 	}
-
+	// 나의 문의
+	@Override
+	public List<BoardDTO> questionclear() throws Exception {
+		return dao.questionclear();
+	}
+	@Override
+	public int getRequestCntt() throws Exception {
+		return dao.getRequestCntt();
+	}
+	@Override
+	public List<BoardDTO> questionclear(paging paging) throws Exception {
+		return dao.questionclear(paging);
+	}
 	
 	// 나의 게시글
 	@Override

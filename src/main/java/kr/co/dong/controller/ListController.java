@@ -120,7 +120,7 @@ public class ListController {
          return mav;   
       }
    
-      // 나의 문의
+      // 대기 문의
       @RequestMapping(value="board/question", method = RequestMethod.GET)
       public ModelAndView question(@RequestParam(value="page", required=false, defaultValue="1")int page,
                          @RequestParam(value="range", required=false, defaultValue="1")int range) throws Exception {
@@ -139,6 +139,25 @@ public class ListController {
          return mav;   
       }
       
+
+      // 문의 처리 내역
+      @RequestMapping(value="board/questionclear", method = RequestMethod.GET)
+      public ModelAndView questionclear(@RequestParam(value="page", required=false, defaultValue="1")int page,
+                         @RequestParam(value="range", required=false, defaultValue="1")int range) throws Exception {
+         ModelAndView mav = new ModelAndView();
+         
+         paging paging = new paging();
+         
+         int getRequestCntt = service.getRequestCntt();
+         paging.pageInfo(page, range, getRequestCntt);
+         
+         mav.addObject("pagination", paging);
+         List<BoardDTO> list = service.question(paging);
+         mav.addObject("questionclear", list);
+         mav.setViewName("questionclear");
+         
+         return mav;   
+      }
       
       // 내 게시글
       @RequestMapping(value="board/list_my", method = RequestMethod.GET)

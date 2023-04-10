@@ -193,6 +193,20 @@ public class BoardDAOImpl implements BoardDAO {
    	return sqlsession.selectList(namespace + ".question", paging);
    }
    
+   // 나의 문의
+   @Override
+   public List<BoardDTO> questionclear() throws Exception {
+   	return sqlsession.selectList(namespace + ".questionclear");
+   }
+   @Override
+   public int getRequestCntt() throws Exception {
+   	return sqlsession.selectOne(namespace+".getRequestCntt");
+   }
+   @Override
+   public List<BoardDTO> questionclear(paging paging) throws Exception {
+   	return sqlsession.selectList(namespace + ".question", paging);
+   }
+   
    
    // 내 게시물
 	@Override

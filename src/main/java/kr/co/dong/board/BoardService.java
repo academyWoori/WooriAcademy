@@ -85,13 +85,19 @@ public interface BoardService {
    public List<BoardDTO> list_free(paging paging) throws Exception;
     
    
-   //나의 문의 게시물 처리를 위한 메소드
+   //대기 문의 게시물 처리를 위한 메소드
    public List<BoardDTO> question() throws Exception;
-   //나의 문의 페이지처리
+   //대기 문의 페이지처리
    public int getRequestCnt() throws Exception;
-   //나의 문의 페이징
+   //대기 문의 페이징
    public List<BoardDTO> question(paging paging) throws Exception;
    
+   //문의 처리완료 게시물 처리를 위한 메소드
+   public List<BoardDTO> questionclear() throws Exception;
+   //문의 처리 완료 페이지처리
+   public int getRequestCntt() throws Exception;
+   //문의 처리 완료 페이징
+   public List<BoardDTO> questionclear(paging paging) throws Exception;
    
    //나의 게시물 처리를 위한 메소드
    public List<BoardDTO> list_my(BoardDTO boardDTO) throws Exception;

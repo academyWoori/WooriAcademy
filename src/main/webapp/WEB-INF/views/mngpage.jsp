@@ -92,7 +92,22 @@ function attend_click() {
                                 <a class="product pag" href=""></a>
                             </div>                        
                         <div class="text-center py-4">
-                            <h4 class="text-primary">문의 처리</h4>
+                            <h4 class="text-primary">대기 문의</h4>
+                            <p class="text-uppercase m-0"></p>          
+                        </div>
+                        </div>
+                    </div>
+                </div>
+                   <div class="col-lg-3">
+                    <div class="team-item bg-light rounded overflow-hidden">
+                        <div class="team-img position-relative overflow-hidden">
+                            <i class="bi bi-question fa-2x position-relative pb-2 mb-5" style="font-size:8em; border-radius:10em; padding:40px 30px;margin-left: 50px;"></i>                         
+                            <div class="team-social">
+                                  <a class="btn btn-lg btn-primary btn-lg-square rounded" href="${contextPath}/board/questionclear"><i class="bi bi-check"></i></a>   
+                                <a class="product pag" href=""></a>
+                            </div>                        
+                        <div class="text-center py-4">
+                            <h4 class="text-primary">문의 처리 내역</h4>
                             <p class="text-uppercase m-0"></p>          
                         </div>
                         </div>

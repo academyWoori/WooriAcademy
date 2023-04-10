@@ -195,8 +195,8 @@
       limit #{startList}, #{listSize};
    </select>
    
-   
-   <!-- 나의 문의 건수 조회 -->
+
+	<!-- 대기 문의 건수 조회 -->
    <select id="getRequestCnt" resultType="java.lang.Integer">
       select count(*)
       from TB_MSG_BOARD
@@ -205,18 +205,38 @@
       order by bd_num desc
    </select>
    
-   <!-- 나의 문의 -->
+   <!-- 대기 문의 -->
    <select id="question" parameterType="java.lang.Integer" resultType="BoardDTO">
       select BD_NUM,M_ID,BD_TL,BD_CON,BD_DT,BD_GROUP,BD_STE,M_ENAME
       from TB_MSG_BOARD
       where BD_STE = 0
       and BD_GROUP = 4
+      
       order by bd_num desc
       limit #{startList}, #{listSize};
    </select>  
-
-
-      
+   
+   <!-- 문의 처리 내역 건수 조회 -->
+   <select id="getRequestCntt" resultType="java.lang.Integer">
+      select count(*)
+      from TB_MSG_BOARD
+      where BD_STE = 0
+      and BD_GROUP = 4
+      and COMM_CON = "처리완료"
+      order by bd_num desc
+   </select>
+   
+   <!-- 문의 처리 -->
+   <select id="questionclear" parameterType="java.lang.Integer" resultType="BoardDTO">
+      select BD_NUM,M_ID,BD_TL,BD_CON,BD_DT,BD_GROUP,BD_STE,M_ENAME
+      from TB_MSG_BOARD
+      where BD_STE = 0
+      and BD_GROUP = 4
+      and COMM_CON = "처리완료"
+      order by bd_num desc
+      limit #{startList}, #{listSize};
+   </select>  
+   
    <!--  글 쓰기 -->
    <insert id="register" parameterType="BoardDTO">
       INSERT INTO TB_MSG_BOARD(m_ename, m_id, bd_num, bd_tl, bd_con, bd_dt, bd_ref, bd_recomm, bd_ste, bd_group)
