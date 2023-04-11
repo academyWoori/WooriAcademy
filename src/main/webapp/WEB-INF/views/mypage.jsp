@@ -17,7 +17,6 @@
 	function attend_click() {
 
 		alert("출석확인 5p 적립되었습니다.");
-		$('input[name.mm_number]').attr('value',"2");
 		validate();
 		
 	}

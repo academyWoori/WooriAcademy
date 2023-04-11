@@ -241,7 +241,43 @@ public class BoardDAOImpl implements BoardDAO {
    public int updateReadCnt(int BD_NUM) throws Exception {
       return sqlsession.update(namespace+".updateReadCnt", BD_NUM);
    }
+   
+   // 추천시 인서트
+	@Override
+	public int insertRecomm(Recomm recomm) throws Exception {
+		return sqlsession.insert(namespace+".insertRecomm",recomm);
+	}
+	// 추천 취소시 딜리트
+	@Override
+	public int deleteRecomm(int bd_num) throws Exception {	
+		return sqlsession.delete(namespace+".deleteRecomm",bd_num);
+	}
 
+
+
+   // 추천수 증가
+	@Override
+	public int recommUp(int up) throws Exception {
+		return sqlsession.update(namespace+".recommUp",up);
+	}
+	// 추천수 감소
+	@Override
+	public int recommDown(int down) throws Exception {
+		return sqlsession.update(namespace+".recommDown",down);
+	}
+	// 개인 추천수(증가)
+	@Override
+	public int userRecommUp(Recomm up) throws Exception {
+		return sqlsession.update(namespace+".userRecommUp",up);
+	}
+	// 개인 추천수(감소)
+	@Override
+	public int userRecommDown(Recomm down) throws Exception {
+		return sqlsession.update(namespace+".userRecommDown",down);
+	}
+   
+   
+	
    
    
    
