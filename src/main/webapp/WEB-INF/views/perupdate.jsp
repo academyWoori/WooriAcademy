@@ -19,22 +19,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 
 $(function(){
-	   	   	   
-	   // 닉네임 중복 확인버튼
-	   $(".btn-enamecheck").click(function(){
-	      enamecheck1.type="hidden";
-	      enamecheck2.type="hidden";
-	      enamecheck3.type="hidden";   
-	      var ename = document.getElementById("m_ename").value;
-	      
-	      if(ename.length > 1 && ename.length < 16){
-	         $('input[name=enamecheckNum]').attr('value','3');
-	         enamecheck2.type="text";
-	      } else {
-	         enamecheck3.type="text";
-	      }
-	   });
-	      
+	   
+
+
 	   // 비밀번호 키업
 	   $('#m_pw').keyup(function(){
 	      $('font[name=passcheck]').text('');
@@ -67,21 +54,12 @@ $(function(){
 	function validate(){
 	   var exptextTel = /^01[016789]+/;
 	   var exptextEmail = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;   
-
-	   var ename = document.getElementById("enamecheckNum").value;
 	   
 	   var password1 = document.getElementById("m_pw").value;
-	   var password2 = document.getElementById("password2").value;
-	   
+	   var password2 = document.getElementById("password2").value;  
 	   var tel = document.getElementById("m_tel").value;
 	   var email = document.getElementById("m_email").value;
-		   
-	   if(ename != 3){
-	      alert("닉네임 오류");
-	      enamecheck1.type="text";
-	      document.getElementById("m_ename").focus();
-	      return false;
-	   }
+
 	   if(password1 != password2){
 	      alert("비밀번호 오류");
 	      passcheck.type="text";
@@ -176,12 +154,7 @@ desired effect
                </div>
                 <div class="form-group"style="height:30%">
                   <label><h5> 닉 네 임 </h5></label>  <input type="text" name="m_ename" id="m_ename" onclick="ename_click();"
-                    value="${user.m_ename}" style="width:30%;height:35px;color:black;background-color:#FFFFFF;margin-left:100px;text-align:center;border:none;"/>
-                    <input type='hidden' id='enamecheckNum' name='enamecheckNum' value='1'>
-                    <button type="button" class="btn btn-enamecheck" style="background-color:#99c2ff;color:White;height:28px;font-size:0.9em;padding-top:3.5px;">중복확인</button>
-               <input type='hidden' id='enamecheck1' name='enamecheck1' class="form-control" value="중복확인을 하십시오." style="color:red; width:200px;height:28px;border:none;font-size:0.8em;text-align:center">
-               <input type='hidden' id='enamecheck2' name='enamecheck2' class="form-control" value="중복확인이 완료되었습니다." style="color:green; width:200px;height:28px;border:none;font-size:0.8em;text-align:center" >
-               <input type='hidden' id='enamecheck3' name='enamecheck3' class="form-control" value="잘못된 아이디 형식입니다." style="color:red; width:200px;height:28px;border:none;font-size:0.8em;text-align:center">      
+                    value="${user.m_ename}" style="width:30%;height:35px;color:black;background-color:#FFFFFF;margin-left:100px;text-align:center;border:none;" readonly="readonly"/>
                </div>
                    <div class="form-group"style="height:30%">
                   <label><h5> 이 메 일 </h5></label>  <input type="text" name="m_email" id="m_email"
@@ -206,7 +179,8 @@ desired effect
          </div>
          
          	<div class="box-footer" style="height:30%">
-           		<button type="submit" class="btn btn-primary" style="margin-top:10px;margin-left:300px;">수정완료</button>         
+           		<button type="submit" class="btn btn-primary" style="margin-top:10px;margin-left:300px;">수정완료</button>
+           		<button type="button" class="btn btn-mypage" style="margin-top:10px;margin-left:1px;" onclick="location.href='mypage'">취소</button>         
          	</div>
             </div>            
        	</section>

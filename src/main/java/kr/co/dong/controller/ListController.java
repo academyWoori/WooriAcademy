@@ -7,6 +7,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpSessionIdListener;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,6 +30,7 @@ import kr.co.dong.board.BoardDTO;
 import kr.co.dong.board.BoardReply;
 import kr.co.dong.board.BoardService;
 import kr.co.dong.board.CodeDTO;
+import kr.co.dong.board.Recomm;
 import kr.co.dong.board.jointempDTO;
 import kr.co.dong.board.paging;
 
@@ -234,6 +236,31 @@ public class ListController {
 		   
 	  }
 	  
+	  @PostMapping(value="board/recommUp")
+	  public String recommUp(@RequestParam("bd_recomm") int bd_recomm,
+			  				 @RequestParam("bd_num") int bd_num, 
+			  				 Recomm recomm ) throws Exception {
+		  
+		  if(recomm.getM_id() == null) {
+			  service.insertRecomm(recomm);
+			  if(recomm.getM_recomm() == 0) {
+				  service.userRecommUp(recomm);
+				  service.recommUp(bd_num);  
+			  }
+		  } else {
+			  if(recomm.getM_recomm() == 0) {
+				  service.userRecommUp(recomm);
+				  service.recommUp(bd_num);
+				  
+			  } else {
+				  service.userRecommDown(recomm);
+				  service.recommDown(bd_num);
+			  }
+		  }
+			
+		  return "recommUp";
+	  }
+	  
 	  
 	   //글 수정 폼(기존데이터 전송- 글읽기)
 	   @RequestMapping(value="board/update", method = RequestMethod.GET)
@@ -341,7 +368,7 @@ public class ListController {
    //ajax 댓글에 대한 매핑과 메소드를 구현(모델에 싣지 않고 그대로 return)
    @ResponseBody
    @RequestMapping(value="board/replylist", method = RequestMethod.POST)
-   public List<BoardReply> replylist(@RequestParam("bd_num")int bd_num) throws Exception {
+   public List<BoardReply> replylist(@RequestParam("bd_num")int bd_num) throws Exception {	  
       return service.getDetail(bd_num);
    }
    

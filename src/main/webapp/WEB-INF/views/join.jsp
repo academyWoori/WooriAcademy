@@ -93,8 +93,12 @@ $(function(){
 						alert("중복된 아이디입니다.")
 						idcheck1.type = "hidden";
 					} else if(result == 0){
-						$(".idcheckNum").attr("value","3");
+						
+						
 						idcheck1.type = "text";
+						$("input[name=idcheckNum]").attr("value",'3');
+						// idcheckNum.value= "3";
+						
 						alert("사용 가능한 아이디 입니다.");
 					}
 				}
@@ -223,6 +227,7 @@ function validate(){
       idcheck1.type="text";
       document.getElementById("m_id").focus();
       return false;
+      
    }
    if(ename != 3){
       alert("닉네임 오류");

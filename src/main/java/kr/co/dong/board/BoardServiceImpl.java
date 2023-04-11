@@ -148,8 +148,42 @@ public class BoardServiceImpl implements BoardService{
    // 디테일 조회수 증가
 	@Override
 	public int updateReadCnt(int BD_NUM) throws Exception {
-		return 0;
+		return dao.updateReadCnt(BD_NUM);
 	}
+	
+	// 추천시 인서트
+	@Override
+	public int insertRecomm(Recomm recomm) throws Exception {
+		return dao.insertRecomm(recomm);
+	}
+	
+	// 추천 취소시 딜리트
+	@Override
+	public int deleteRecomm(int bd_num) throws Exception {
+		return dao.deleteRecomm(bd_num);
+	}
+	
+	// 추천수 증가
+	@Override
+	public int recommUp(int up) throws Exception {
+		return dao.recommUp(up);
+	}
+	// 추천수 감소
+	@Override
+	public int recommDown(int down) throws Exception {
+		return dao.recommDown(down);
+	}
+	// 개인 추천수 증가
+	@Override
+	public int userRecommUp(Recomm up) throws Exception {
+		return dao.userRecommUp(up);
+	}
+	// 개인 추천수 감소
+	@Override
+	public int userRecommDown(Recomm down) throws Exception {
+		return dao.userRecommDown(down);
+	}
+
 	
 
 	
@@ -319,6 +353,7 @@ public class BoardServiceImpl implements BoardService{
 	public jointempDTO mySelect(jointempDTO jointempDTO) throws Exception {
 		return dao.mySelect(jointempDTO);
 	}
+
 
 
 

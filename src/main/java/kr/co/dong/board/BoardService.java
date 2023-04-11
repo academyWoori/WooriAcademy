@@ -115,10 +115,7 @@ public interface BoardService {
    // [레지스터]  ***************************************************************
    //선택목록(글읽기)을 위한 메소드
    public BoardDTO detail(int BD_NUM) throws Exception;
-   
-   // 조회수 증가를 위한 메소드
-   public int updateReadCnt(int BD_NUM) throws Exception;
-   
+  
    //글쓰기를 위한 메소드
    public int register(BoardDTO boardDTO) throws Exception;
    
@@ -127,7 +124,24 @@ public interface BoardService {
    
    //글삭제를 위한 메소드
    public int delete(int BD_NUM) throws Exception;
+     
    
+   // 조회수 증가를 위한 메소드
+   public int updateReadCnt(int BD_NUM) throws Exception;
+   
+   //추천시 테이블 인서트
+   public int insertRecomm(Recomm recomm) throws Exception;
+   //추천시 테이블 딜리트
+   public int deleteRecomm(int bd_num) throws Exception;   
+   
+   // 추천수 증가를 위한 메소드
+   public int recommUp(int up) throws Exception;
+   // 추천수 감소를 위한 메소드
+   public int recommDown(int down) throws Exception;
+   // 개인 추천 관리(증가) 메소드
+   public int userRecommUp(Recomm up) throws Exception;
+   // 개인 추천 관리(감소) 메소드
+   public int userRecommDown(Recomm down) throws Exception;
    
    
    // 댓글 *********************************************************************

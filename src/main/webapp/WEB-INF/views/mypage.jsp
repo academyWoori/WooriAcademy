@@ -17,7 +17,6 @@
 	function attend_click() {
 
 		alert("출석확인 5p 적립되었습니다.");
-		$('input[name.mm_number]').attr('value',"2");
 		validate();
 		
 	}
@@ -72,8 +71,8 @@
             </div>           
                </h5>                               
                </div>
-                 <button class="button button--wapasha button--round-s" style="color: #fff; background:#008CBA; font-size:1.3em; border-radius:0.5em; padding:5px 20px;">회원정보변경</button>
-                 <button class="button button--wapasha button--round-s" style="color: #fff; background:#008CBA; font-size:1.3em; border-radius:0.5em; padding:4px 40px;">회원탈퇴</button>            
+                  <button class="button button--wapasha button--round-s" style="color: #fff; background:#008CBA; font-size:1.3em; border-radius:0.5em; padding:5px 20px;" onclick="location.href='personal_information'">회원정보변경</button>
+                 <button class="button button--wapasha button--round-s" style="color: #fff; background:#008CBA; font-size:1.3em; border-radius:0.5em; padding:4px 40px;" onclick="location.href='deleteuser'">회원탈퇴</button>         
     <!-- Service end -->
 
     <!-- Contact Start -->
@@ -139,21 +138,6 @@
                      </div>
                     </div>
                 </div>
-                <div class="col-lg-4 wow slideInUp" data-wow-delay="0.9s">
-                    <div class="team-item bg-light rounded overflow-hidden">
-                        <div class="team-img position-relative overflow-hidden">
-                            <i class="bi bi-chat-left-dots fa-2x position-relative pb-2 mb-5" style="font-size:8em; border-radius:10em; padding:40px 40px;margin-left: 90px;"></i>                         
-                            <div class="team-social">
-                                  <a class="btn btn-lg btn-primary btn-lg-square rounded" href="${contextPath}/board/product1"><i class="bi bi-check"></i></a>   
-                                <a class="product pag" href=""></a>
-                            </div>                       
-                        <div class="text-center py-4">
-                            <h4 class="text-primary">내 댓글</h4>
-                            <p class="text-uppercase m-0"></p>
-                             </div>          
-                        </div>
-                    </div>
-                </div>
                 <div class="col-lg-4 wow slideInUp" data-wow-delay="0.12s">
                     <div class="team-item bg-light rounded overflow-hidden">
                         <div class="team-img position-relative overflow-hidden">
@@ -180,25 +164,10 @@
                         <div class="text-center py-4">
                             <h4 class="text-primary">포인트 전환</h4>
                             <p class="text-uppercase m-0"></p>          
-                        </div>
+                        </div> 
                        </div>
                     </div>
-                </div>
-                 <div class="col-lg-4 wow slideInUp" data-wow-delay="0.18s">
-                    <div class="team-item bg-light rounded overflow-hidden">
-                        <div class="team-img position-relative overflow-hidden">
-                            <i class="bi bi-layout-text-sidebar-reverse fa-2x position-relative pb-2 mb-5" style="font-size:8em; border-radius:10em; padding:40px 40px;margin-left: 90px;"></i>                         
-                            <div class="team-social">
-                                  <a class="btn btn-lg btn-primary btn-lg-square rounded" href="${contextPath}/board/product1"><i class="bi bi-check"></i></a>   
-                                <a class="product pag" href=""></a>
-                            </div>
-                        <div class="text-center py-4">
-                            <h4 class="text-primary">추천 목록</h4>
-                            <p class="text-uppercase m-0"></p>          
-                        </div>
-                  </div>
-                    </div>
-                </div>             
+                </div>        
             </div>
         </div>
     </div>
