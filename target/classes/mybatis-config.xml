@@ -11,7 +11,5 @@
 	     <typeAlias alias="jointempDTO" type="kr.co.dong.board.jointempDTO"/>
 	     <typeAlias alias="paging" type="kr.co.dong.board.paging"/>
 	     <typeAlias alias="PointDTO" type="kr.co.dong.board.PointDTO"/>
-	     <typeAlias alias="Recomm" type="kr.co.dong.board.Recomm"/>
-	     
 	</typeAliases>
 </configuration>
