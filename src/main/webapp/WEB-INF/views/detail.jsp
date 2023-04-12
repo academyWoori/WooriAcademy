@@ -123,8 +123,8 @@ $(function(){
                    htmls += '<strong class="text-gray-dark">' + this.m_ename + '</strong>';
                    htmls += '　<strong class="text-gray-dark">' + this.comm_dt + '</strong>';
                    htmls += '<span style="padding-left: 7px; font-size: 9pt">';   
-                   alert(this.m_id);
-                   htmls += '<c:if test="${Ci5N0222 eq '+this.m_id+'}">';
+                   alert(this.m_id + '  ' + user);
+                   htmls += '<c:if test="${'+user+' eq '+this.m_id+'}">';
                    htmls += '<a href="javascript:void(0)" onclick ="fn_editReply(' + this.comm_num + ', \'' + this.m_ename + '\', \'　' + this.comm_dt + '\',\'　' + this.comm_con + '\'  )" style="padding-right:5px">수정</a>';
                    htmls += '<a href="javascript:void(0)" onclick="fn_deleteReply(' + this.comm_num + ')" >삭제</a>';
                    htmls += '</c:if>';
@@ -281,10 +281,12 @@ desired effect
               <button class="btn btn-list">목록</button>
               <button class="btn btn-up" id="rec_update">추천하기</button>
 
+			  <c:if test="${user.m_id == board.m_id }">
               <div style="float:right">
                <button class="btn btn-warning">수정</button>
                <button class="btn btn-danger">삭제</button>
 			  </div>
+			  </c:if>
                
           </div>
          <br><br>

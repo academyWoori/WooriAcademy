@@ -139,12 +139,14 @@ desired effect
       <form role="form" name="f" method="post" onsubmit="return validate();">
          <div class="box-body">
          <select id='bd_group' name='bd_group' style="width:130px; height:30;">
-                  <option value="2">메인게시판</option>
-                  <option value="3">자유게시판</option>
+         		  <c:if test ="${user.m_ste == 9}">
+         		  <option value="1">공지 게시판</option>
+         		  </c:if>
+                  <option value="2">메인 게시판</option>
+                  <option value="3">자유 게시판</option>
                   <option value="4">나의 문의</option>
          </select>
 
-         
             <div class="form-group">
                <br><input type="text" name='bd_tl' id='bd_tl' class="form-control" placeholder="제목을 입력하세요">
             </div><br>
@@ -157,6 +159,7 @@ desired effect
             <!--  style = "width : 20%" maxlength="10" value부터 지우고 앞 글 사용하면 입력 및 글자수 제한으로 입력가능 -->
             <input type="hidden" id="m_ename" name="m_ename" value="${user.m_ename}" readonly>
             <input type="hidden" id="m_id" name="m_id" value="${user.m_id}" readonly>
+            <input type="hidden" id="m_ste" name="m_ste" value="${user.m_ste}" readonly>
             
             <div class="form-group">
                      <label>첨부파일</label>
