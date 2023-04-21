@@ -1,2 +1,1 @@
-<h2>수근수근 프로젝트<h2>
-!(https://user-images.githubusercontent.com/127379535/233569508-af3e7949-656a-4939-98da-eff9c77e6472.png)
+![susulogob](https://user-images.githubusercontent.com/127379535/233570005-a3918953-c5c2-4f96-85a2-40d2748fbf30.png)<h2>수근수근 프로젝트<h2>
